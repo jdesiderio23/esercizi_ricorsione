@@ -13,7 +13,7 @@ def countdown_recursive(n):
     # condizione non terminale
     else:
         print(n)
-        sleep(1)
+        #sleep(1)
         countdown_recursive(n-1)
 
 
