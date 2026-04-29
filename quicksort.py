@@ -4,34 +4,34 @@ def quicksort(sequenza):
         return sequenza
     # caso ricorsivo
     else:
-        #1. scelta pivot
+        # 1. scelta pivot
         pivot = sequenza[0]
-        #2. dividere sequenza secondo il pivot
+        # 2. dividere sequenza secondo il pivot
         # sequenza_smaller = []
         # sequenza_pivot = []
         # sequenza_larger = []
-        # for i in sequenza:
+        # for s in sequenza:
         #     # il numero è < pivot
-        #     if i < pivot:
-        #         sequenza_smaller.append(i)
+        #     if s < pivot:
+        #         sequenza_smaller.append(s)
         #     # il numero è uguale al pivot
-        #     elif i == pivot:
-        #         sequenza_pivot.append(i)
-        #     # il numero > pivot
+        #     elif s == pivot:
+        #         sequenza_pivot.append(s)
+        #     # il numero è > pivot
         #     else:
-        #         sequenza_larger.append(i)
+        #         sequenza_larger.append(s)
 
-        sequenza_smaller = [n for n in sequenza if n < pivot]
-        sequenza_pivot = [n for n in sequenza if n == pivot]
-        sequenza_larger = [n for n in sequenza if n > pivot]
-
-        #3. la soluzione è data da: ordinare il vettore smaller + il vettore = pivot
-        # + ordinare il vettore larger
+        sequenza_smaller = [s for s in sequenza if s < pivot]
+        sequenza_pivot = [s for s in sequenza if s == pivot]
+        sequenza_larger = [s for s in sequenza if s > pivot]
+        # 3. la soluzione è data da: ordinare il vettore smaller + il vettore = pivot + il vettore larger
         return (quicksort(sequenza_smaller)
                 + sequenza_pivot
                 + quicksort(sequenza_larger))
 
 
-if __name__ == '__main__':
+
+
+if __name__ == "__main__":
     sequenza = [9, 3, 2, 6, 8, 5, 199]
     print(quicksort(sequenza))
