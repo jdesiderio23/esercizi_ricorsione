@@ -37,7 +37,9 @@ def ricorsione_str(parziale: str, rimanenti: str, soluzioni):
 def anagrammi_str2(parola):
     ricorsione_str2("", parola)
 
-def ricorsione_str(parziale: str, rimanenti: str):
+
+@lru_cache(maxsize=None)
+def ricorsione_str2(parziale: str, rimanenti: str):
     # caso terminale
     if len(rimanenti) == 0:
         print(parziale)
@@ -45,7 +47,7 @@ def ricorsione_str(parziale: str, rimanenti: str):
     else:
         for i in range(len(rimanenti)):
             nuovi_rimanenti = rimanenti[:i] + rimanenti[i + 1:]
-            ricorsione_str(parziale+rimanenti[i], nuovi_rimanenti)
+            ricorsione_str2(parziale+rimanenti[i], nuovi_rimanenti)
 
 
 
