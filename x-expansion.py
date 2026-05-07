@@ -1,3 +1,6 @@
+import copy
+
+
 class XExpansion:
     def __init__(self):
         self.soluzioni = []
@@ -13,17 +16,16 @@ class XExpansion:
         # caso terminale
         if len(rimanenti) == 0:
             # print(parziale)
-            self.soluzioni_list.append(parziale)
+            self.soluzioni_list.append(copy.deepcopy(parziale))
         # caso ricorsivo
         else:
             if rimanenti[0] == "X":
-                parziale.append("0")
-                self._ricorsione_list(parziale, rimanenti[1:])
-                parziale.pop()
 
-                parziale.append("1")
-                self._ricorsione_list(parziale, rimanenti[1:])
-                parziale.pop()
+                #ciclare sui step possibili
+                for c in ["0", "1"]:
+                    parziale.append(c)
+                    self._ricorsione_list(parziale, rimanenti[1:])
+                    parziale.pop()
             else:
                 parziale.append(rimanenti[0])
                 self._ricorsione_list(parziale, rimanenti[1:])
@@ -77,7 +79,7 @@ def x_expansion2(input):
 
 
 if __name__ == "__main__":
-    sequenza = "01X0X"
+    sequenza = "01X"
     xexp = XExpansion()
 
     # metodo con soluzioni parziali rappresentate come stringhe
