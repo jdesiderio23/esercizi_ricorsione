@@ -18,19 +18,32 @@ class NRegine():
         self.n_chiamate += 1
         # caso terminale: ho messo N regine
         if len(parziale) == N:
-            if self._is_soluzione(parziale):
-                self.n_soluzioni += 1
-                print(parziale)
+             # if self._is_soluzione(parziale):
+             #     self.n_soluzioni += 1
+             #     print(parziale)
+             self.n_soluzioni += 1
+             print(parziale)
         # caso ricorsivo: ho messo < N regine
         else:
             for riga in range(N):
                 for col in range(N):
-                    # aggiungi pezzetto di soluzione in parziale
-                    parziale.append([riga, col])
-                    # andare avanti con la ricorsione
-                    self._ricorsione2(parziale, N)
-                    # backtracking
-                    parziale.pop()
+                    # verifico se la nuova regina sia ammissibile
+                    nuova_regina = [riga,col]
+                    if self._step_is_valid(nuova_regina, parziale):
+                        # aggiungi pezzetto di soluzione in parziale
+                        parziale.append(nuova_regina)
+                        # andare avanti con la ricorsione
+                        self._ricorsione2(parziale, N)
+                        # backtracking
+                        parziale.pop()
+
+    # Funzione che controlla se la nuova regina da inserire sia ammissibile rispetto alla
+    # soluzione parziale costruita finora.
+    def _step_is_valid(self, nuova_regina, parziale) -> bool:
+        for regina in parziale:
+            if not self._is_pair_admissible(nuova_regina, regina):
+                return False
+        return True
 
     # Funzione che prende due regine e restituisce True se non si possono attaccare
     # altrimenti, restituisce False
